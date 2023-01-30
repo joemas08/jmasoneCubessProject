@@ -6,6 +6,7 @@
 <p>This project utilizes the API from <a href="https://www.wufoo.com">wufoo.com</a> that is used with their form 
 submissions. It pulls all the submissions to a specified form and currently sends this information to a designated text 
 file in the project called entries.txt</p>
+<p><a href="https://j1masone.wufoo.com/forms/cubes-project-proposal-submission/">My Wufoo Form</a></p>
 <br>
 <h4>How to install & run the project</h4>
 <ol>Clone the Repository</ol>
