@@ -42,3 +42,179 @@ CreatedBy	public
 DateUpdated	No entry
 UpdatedBy	None
 --------------------------------------------------
+EntryId	3
+Field102	Mr.
+Field104	Obi-Wan
+Field105	Kenobi
+Field106	Jedi Master
+Field107	Jedi High Council
+Field109	maulslayer@jedicouncil.com
+Field110	jedicouncil.com
+Field111	1234561977
+Field112	No entry
+Field113	Guest Speaker
+Field114	Site Visit
+Field115	No entry
+Field116	No entry
+Field117	Career Panel
+Field118	No entry
+Field213	Further discussion is needed
+DateCreated	2023-01-30 18:00:18
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	4
+Field102	Ms.
+Field104	Jane 
+Field105	Doe
+Field106	Empress
+Field107	Generic Name Co.
+Field109	generic@vanilla.com
+Field110	generic_vanilla.com
+Field111	1230984567
+Field112	Course Project
+Field113	Guest Speaker
+Field114	Site Visit
+Field115	Job Shadow
+Field116	Internships
+Field117	Career Panel
+Field118	Networking Event
+Field213	Yes
+DateCreated	2023-02-02 12:01:34
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	5
+Field102	Mr.
+Field104	Anakin
+Field105	Skywalker
+Field106	Jedi Knight/ Sith Lord
+Field107	Galactic Republic/ Galactic Empire
+Field109	chosenone@jedicouncil.com
+Field110	jedicouncil.com
+Field111	3216540987
+Field112	No entry
+Field113	No entry
+Field114	No entry
+Field115	No entry
+Field116	No entry
+Field117	Career Panel
+Field118	Networking Event
+Field213	Yes
+DateCreated	2023-02-02 12:15:25
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	6
+Field102	Mr.
+Field104	Mario
+Field105	Mario
+Field106	Plumber
+Field107	Nintendo
+Field109	mario@itsame.com
+Field110	No entry
+Field111	No entry
+Field112	No entry
+Field113	Guest Speaker
+Field114	Site Visit
+Field115	No entry
+Field116	No entry
+Field117	Career Panel
+Field118	No entry
+Field213	Yes
+DateCreated	2023-02-02 12:20:40
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	7
+Field102	Mr.
+Field104	Luigi
+Field105	Mario
+Field106	Plumber
+Field107	Nintendo
+Field109	luigi@luigitime.com
+Field110	No entry
+Field111	No entry
+Field112	No entry
+Field113	Guest Speaker
+Field114	No entry
+Field115	No entry
+Field116	No entry
+Field117	Career Panel
+Field118	No entry
+Field213	Yes
+DateCreated	2023-02-02 12:27:36
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	8
+Field102	Mr.
+Field104	John 
+Field105	Kratos
+Field106	God of War
+Field107	Mount Olympus
+Field109	godofwar@greekmyth.com
+Field110	No entry
+Field111	No entry
+Field112	No entry
+Field113	No entry
+Field114	Site Visit
+Field115	No entry
+Field116	No entry
+Field117	No entry
+Field118	No entry
+Field213	No
+DateCreated	2023-02-02 12:31:40
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	9
+Field102	Mr.
+Field104	Michael
+Field105	Corleone
+Field106	Boss
+Field107	The Family
+Field109	sorryfredo@crime.com
+Field110	No entry
+Field111	No entry
+Field112	No entry
+Field113	No entry
+Field114	No entry
+Field115	No entry
+Field116	No entry
+Field117	No entry
+Field118	No entry
+Field213	Yes
+DateCreated	2023-02-02 12:38:06
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	10
+Field102	Mr.
+Field104	Bruce
+Field105	Wayne
+Field106	CEO
+Field107	Wayne Enterprises
+Field109	notbatman@wayneenterprises.com
+Field110	No entry
+Field111	No entry
+Field112	No entry
+Field113	No entry
+Field114	No entry
+Field115	Job Shadow
+Field116	No entry
+Field117	Career Panel
+Field118	No entry
+Field213	Yes
+DateCreated	2023-02-02 12:48:06
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
