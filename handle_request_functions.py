@@ -1,13 +1,13 @@
 import requests
 from requests.auth import HTTPBasicAuth
-import secrets
+from secrets import wufoo_key
 import sys
 
 
 def get_wufoo_data(url_passed: str) -> list[dict[1]]:
     try:
         response = requests.get(url_passed,
-                                auth=HTTPBasicAuth(secrets.wufoo_key, 'pass'))
+                                auth=HTTPBasicAuth(wufoo_key, 'pass'))
     except requests.exceptions.InvalidURL:
         print(f'The URL {url_passed} had: Invalid URL Error')
         exit()
