@@ -3,7 +3,7 @@ from database_functions import connect_to_database, create_entry_table, \
     insert_wufoo_data_to_table, close_db
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # comment to test workflow
     url = ("https://j1masone.wufoo.com/api/v3/forms/cubes-project-proposal-"
            "submission/entries/json")
 
