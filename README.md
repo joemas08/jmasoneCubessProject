@@ -4,9 +4,11 @@
 <br>
 <h4>Brief overview of the project</h4>
 <p>This project utilizes the API from <a href="https://www.wufoo.com">wufoo.com</a> that is used with their form 
-submissions. It pulls all the submissions to a specified form and currently sends this information to a designated text 
-file in the project called entries.txt</p>
-<p><a href="https://j1masone.wufoo.com/forms/cubes-project-proposal-submission/">My Wufoo Form</a></p>
+submissions. It pulls all the submissions to a specified form and currently sends this information to a designated database 
+in the project called form_submission.db. This database file will be created on the first run of the program.</p>
+<br>
+<h4>Database Used</h4>
+<p>I have used a SQLite database. It has the one table <i>form_submissions</i> that has all the correlating fields from <a href="https://j1masone.wufoo.com/forms/cubes-project-proposal-submission/">my wufoo form</a>.</p>
 <br>
 <h4>How to install & run the project</h4>
 <ol>Clone the Repository</ol>

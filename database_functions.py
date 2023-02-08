@@ -60,11 +60,12 @@ def create_entry_table(db_connection: sqlite3.Connection,
 
 def insert_wufoo_data_to_table(db_connection: sqlite3.Connection,
                                db_cursor: sqlite3.Cursor,
-                               form_entries: list[dict]):
+                               form_entries: list[dict],
+                               table_name: str):
     try:
         for lists, entries in form_entries.items():
             for entry in entries:
-                db_cursor.execute('''INSERT INTO form_submissions VALUES
+                db_cursor.execute(f'''INSERT INTO {table_name} VALUES
                                   (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                                   ''',
                                   (entry.get('EntryId', 'No Entry'),
@@ -89,7 +90,7 @@ def insert_wufoo_data_to_table(db_connection: sqlite3.Connection,
                                    entry.get('DateUpdated', 'No Entry'),
                                    entry.get('UpdatedBy', 'No Entry')))
                 db_connection.commit()
-        print('~ Database: form_submissions.db has been'
+        print('~ Database: Database has been'
               ' populated with submission data\n')
     except sqlite3.Error as db_error:
         print(f'A database error has occurred : {db_error}')

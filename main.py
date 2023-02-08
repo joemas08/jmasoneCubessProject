@@ -14,5 +14,6 @@ if __name__ == '__main__':  # comment to test workflow
 
     db_connection, db_cursor = connect_to_database(database)
     create_entry_table(db_connection, db_cursor, table_name)
-    insert_wufoo_data_to_table(db_connection, db_cursor, form_entries)
+    insert_wufoo_data_to_table(db_connection, db_cursor,
+                               form_entries, table_name)
     close_db(db_connection, db_cursor)
