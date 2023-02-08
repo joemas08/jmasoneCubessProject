@@ -4,7 +4,7 @@ from secrets import wufoo_key
 import sys
 
 
-def get_wufoo_data(url_passed: str) -> list[dict[1]]:
+def get_wufoo_data(url_passed: str) -> requests.Response:
     try:
         response = requests.get(url_passed,
                                 auth=HTTPBasicAuth(wufoo_key, 'pass'))

@@ -1,4 +1,5 @@
 import sqlite3
+import requests
 
 
 def connect_to_database(db_name: str):
@@ -60,7 +61,7 @@ def create_entry_table(db_connection: sqlite3.Connection,
 
 def insert_wufoo_data_to_table(db_connection: sqlite3.Connection,
                                db_cursor: sqlite3.Cursor,
-                               form_entries: list[dict],
+                               form_entries: requests.Response,
                                table_name: str):
     try:
         for lists, entries in form_entries.items():

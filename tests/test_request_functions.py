@@ -1,4 +1,6 @@
 from handle_request_functions import get_wufoo_data
+from database_functions import connect_to_database, create_entry_table,\
+    close_db
 
 
 def test_get_wufoo_data():
@@ -10,4 +12,17 @@ def test_get_wufoo_data():
     for lists, entries in test_form_entries.items():
         for entry in entries:
             test_total_submissions += 1
+
     assert test_total_submissions >= 10
+
+
+def test_db_functions():
+    test_db_name = 'test.db'
+    test_table_name = 'test_table'
+
+    db_connection, db_cursor = connect_to_database(test_db_name)
+    create_entry_table(db_connection, db_cursor, test_table_name)
+    query_test_table = db_cursor.execute(f'SELECT * FROM {test_table_name}')
+    close_db(db_connection, db_cursor)
+
+    assert query_test_table is not None
