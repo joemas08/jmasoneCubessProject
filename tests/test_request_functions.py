@@ -37,4 +37,4 @@ def test_db_functions():
         db_cursor.execute("SELECT * FROM MISSING")
         assert db_error.type == sqlite3.OperationalError
 
-    close_db
+    close_db(db_connection, db_cursor)
