@@ -105,4 +105,4 @@ def close_db(db_connection: sqlite3.Connection, db_cursor: sqlite3.Cursor):
 
     if db_connection:
         db_connection.close()
-        print('~ Database: meteorite_db.db has been closed')
+        print('~ Database: form_submission.db has been closed')
