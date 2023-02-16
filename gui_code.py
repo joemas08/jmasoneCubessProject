@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
+from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 import sys
 
 
@@ -9,22 +10,31 @@ class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
 
-        self.setWindowTitle("My Awesome GUI")
-        users = ['user1', 'user2', 'user3', 'user4']
+        self.setWindowTitle("Wufoo Forms")
 
-        label = QLabel("This is awesome!")
+        db_connection = QSqlDatabase.addDatabase("QSQLITE")
+        db_connection.setDatabaseName("form_submission.db")
+        db_connection.open()
 
-        label.setAlignment(Qt.AlignCenter)
+        query = QSqlQuery()
+        query.exec("SELECT first_name, last_name FROM form_submissions")
+        first_name, last_name = range(2)
+        users = []
+        while query.next():
+            users.append(f'{query.value(first_name)} {query.value(last_name)}')
 
-        self.setCentralWidget(label)
-
-        page_layout = QVBoxLayout()
+        page_layout = QHBoxLayout()
         button_layout = QVBoxLayout()
+        submission_info_layout = QVBoxLayout()
 
         page_layout.addLayout(button_layout)
+        page_layout.addLayout(submission_info_layout)
+
+        submission_info_layout.addWidget(QLabel("Test Label", self))
 
         for user in users:
-            button_layout.addWidget(QPushButton(f'{user}', self))
+            widget = QPushButton(f'{user}', self)
+            button_layout.addWidget(widget)
 
         widget = QWidget()
         widget.setLayout(page_layout)
