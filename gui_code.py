@@ -1,6 +1,7 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout,\
+    QVBoxLayout, QLabel, QPushButton, QWidget, QGridLayout, QLineEdit
+# from PyQt5.QtCore import *
+# from PyQt5.QtGui import *
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 import sys
 
@@ -25,12 +26,22 @@ class MainWindow(QMainWindow):
 
         page_layout = QHBoxLayout()
         button_layout = QVBoxLayout()
-        submission_info_layout = QVBoxLayout()
+        submission_info_layout = QGridLayout()
 
         page_layout.addLayout(button_layout)
         page_layout.addLayout(submission_info_layout)
 
-        submission_info_layout.addWidget(QLabel("Test Label", self))
+        submission_info_layout.addWidget(QLabel("Prefix: ", self), 0, 0)
+        prefix_widget = QLineEdit()
+        prefix_widget.setPlaceholderText("Mr.")
+        prefix_widget.setReadOnly(True)
+        submission_info_layout.addWidget(prefix_widget, 0, 1)
+        submission_info_layout.addWidget(QLabel("First Name: ", self), 0, 3)
+        first_name_widget = QLineEdit()
+        first_name_widget.setPlaceholderText("John")
+        first_name_widget.setReadOnly(True)
+        submission_info_layout.addWidget(first_name_widget, 0, 4)
+        submission_info_layout.addWidget(QLabel("Test Label5", self), 2, 0)
 
         for user in users:
             widget = QPushButton(f'{user}', self)
@@ -39,3 +50,14 @@ class MainWindow(QMainWindow):
         widget = QWidget()
         widget.setLayout(page_layout)
         self.setCentralWidget(widget)
+
+
+def display_gui():
+    # Only need one Qapplication instance per application
+    app = QApplication(sys.argv)
+
+    window = MainWindow()
+    # Windows are hidden by default
+    window.show()
+
+    app.exec_()

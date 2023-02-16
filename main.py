@@ -1,8 +1,7 @@
 from handle_request_functions import get_wufoo_data
 from database_functions import connect_to_database, create_entry_table, \
     insert_wufoo_data_to_table, close_db
-from gui_code import *
-import sys
+from gui_code import display_gui
 
 if __name__ == '__main__':  # comment to test workflow
     url = ("https://j1masone.wufoo.com/api/v3/forms/cubes-project-proposal-"
@@ -19,11 +18,4 @@ if __name__ == '__main__':  # comment to test workflow
     #                            form_entries, table_name)
     # close_db(db_connection, db_cursor)
 
-    # Only need one Qapplication instance per application
-    app = QApplication(sys.argv)
-
-    window = MainWindow()
-    # Windows are hidden by default
-    window.show()
-
-    app.exec_()
+    display_gui()
