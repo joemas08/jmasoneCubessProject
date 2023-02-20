@@ -20,11 +20,10 @@ class MainWindow(QMainWindow):
 
         query = QSqlQuery()
         query.exec("SELECT first_name, last_name FROM form_submissions")
-        first_name, last_name = range(2)
         submissions = []
         while query.next():
-            submissions.append(f'{query.value(first_name)}'
-                               f' {query.value(last_name)}')
+            submissions.append(f'{query.value("first_name")}'
+                               f' {query.value("last_name")}')
 
         page_layout = QHBoxLayout()
         button_layout = QVBoxLayout()
@@ -106,44 +105,68 @@ class MainWindow(QMainWindow):
 
         networking_event_box = QCheckBox("Networking Event")
         networking_event_box.setDisabled(True)
-        submission_info_layout.addWidget(networking_event_box, 10, 0)  
+        submission_info_layout.addWidget(networking_event_box, 10, 0)
 
         def show_entries_data(entry_passed):
-            # name = entry_passed.split()
-            # results = []
-            # entry_id, prefix, first_name, last_name, title, org_name, email, org_site,
-            # phone,course_project, guest_speaker, site_visit, job_shadow, internships, 
-            # career_panel, networking_event, use_permission, date_created, created_by, 
-            # date_updated, updated_by = range(21)
-            # query = QSqlQuery()
-            # query.exec(f"SELECT * FROM form_submissions WHERE first_name LIKE {name[0]}")
-            # while query.next():
-            #     results.append(f'{query.value(entry_id)}')
+            name = entry_passed.split(' ')
+            # name = ["James", "Bond"]
+
+            entry_data = query_entries_data(name)
+            print(entry_data)
+
+            title, prefix, first, last, org_name, email, permission, phone, course, guest, site, job_shadow, internship, career_panel, networking = range(15)
 
             # ROW 1
-            position_widget.setPlaceholderText("Supreme Leader")
-            prefix_widget.setPlaceholderText("Mr.")
+            position_widget.setPlaceholderText(entry_data[title])
+            prefix_widget.setPlaceholderText(entry_data[prefix])
 
             # ROW 2
-            first_name_widget.setPlaceholderText("John")
-            last_name_widget.setPlaceholderText("Doe")
+            first_name_widget.setPlaceholderText(entry_data[first])
+            last_name_widget.setPlaceholderText(entry_data[last])
 
             # ROW 3
-            org_widget.setPlaceholderText("Generic Name Co.")
-            email_widget.setPlaceholderText("sample@vanilla.com")
+            org_widget.setPlaceholderText(entry_data[org_name])
+            email_widget.setPlaceholderText(entry_data[email])
 
             # ROW 4
-            permission_widget.setPlaceholderText("Yes")
-            phone_widget.setPlaceholderText("555-555-5555")
+            permission_widget.setPlaceholderText(entry_data[permission])
+            phone_widget.setPlaceholderText(entry_data[phone])
 
             # CHECK BOXES
-            course_project_box.setChecked(False)
-            guest_speaker_box.setChecked(True)
-            site_visit_box.setChecked(False)
-            job_shadow_box.setChecked(True)
-            internship_box.setChecked(False)
-            career_panel_box.setChecked(False)
-            networking_event_box.setChecked(False)
+            if entry_data[course] != '':
+                course_project_box.setChecked(True)
+            else:
+                course_project_box.setChecked(False)
+
+            if entry_data[guest] != '':
+                guest_speaker_box.setChecked(True)
+            else:
+                guest_speaker_box.setChecked(False)
+
+            if entry_data[site] != '':
+                site_visit_box.setChecked(True)
+            else:
+                site_visit_box.setChecked(False)
+
+            if entry_data[job_shadow] != '':
+                job_shadow_box.setChecked(True)
+            else:
+                job_shadow_box.setChecked(False)
+
+            if entry_data[internship] != '':
+                internship_box.setChecked(True)
+            else:
+                internship_box.setChecked(False)
+
+            if entry_data[career_panel] != '':
+                career_panel_box.setChecked(True)
+            else:
+                career_panel_box.setChecked(False)
+
+            if entry_data[networking] != '':
+                networking_event_box.setChecked(True)
+            else:
+                networking_event_box.setChecked(False)
 
         for user in submissions:
             button = QPushButton(f'{user}', self)
@@ -154,6 +177,33 @@ class MainWindow(QMainWindow):
         widget = QWidget()
         widget.setLayout(page_layout)
         self.setCentralWidget(widget)
+
+
+def query_entries_data(name_passed):
+
+    entry_data = []
+
+    query = QSqlQuery()
+    query.exec(f"SELECT * FROM form_submissions WHERE first_name IN"
+               f" (\"{name_passed[0]}\") AND last_name IN (\"{name_passed[1]}\")")
+    while query.next():
+        entry_data.append(query.value("title"))
+        entry_data.append(query.value("prefix"))
+        entry_data.append(query.value("first_name"))
+        entry_data.append(query.value("last_name"))
+        entry_data.append(query.value("org_name"))
+        entry_data.append(query.value("email"))
+        entry_data.append(query.value("use_permission"))
+        entry_data.append(query.value("phone"))
+        entry_data.append(query.value("course_project"))
+        entry_data.append(query.value("guest_speaker"))
+        entry_data.append(query.value("site_visit"))
+        entry_data.append(query.value("job_shadow"))
+        entry_data.append(query.value("internships"))
+        entry_data.append(query.value("career_panel"))
+        entry_data.append(query.value("networking_event"))
+
+    return entry_data
 
 
 def display_gui():
