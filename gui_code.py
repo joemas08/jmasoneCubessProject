@@ -33,6 +33,81 @@ class MainWindow(QMainWindow):
         page_layout.addLayout(button_layout)
         page_layout.addLayout(submission_info_layout)
 
+        # ROW 1
+        submission_info_layout.addWidget(QLabel("Position: ", self), 0, 0)
+        position_widget = QLineEdit()
+        position_widget.setReadOnly(True)
+        submission_info_layout.addWidget(position_widget, 0, 1)
+
+        submission_info_layout.addWidget(QLabel("Prefix: ", self), 0, 2)
+        prefix_widget = QLineEdit()
+        prefix_widget.setReadOnly(True)
+        submission_info_layout.addWidget(prefix_widget, 0, 3)
+
+        # ROW 2
+        submission_info_layout.addWidget(QLabel("First Name: ", self), 1, 0)
+        first_name_widget = QLineEdit()
+        first_name_widget.setReadOnly(True)
+        submission_info_layout.addWidget(first_name_widget, 1, 1)
+
+        submission_info_layout.addWidget(QLabel("Last Name: ", self), 1, 2)
+        last_name_widget = QLineEdit()
+        last_name_widget.setReadOnly(True)
+        submission_info_layout.addWidget(last_name_widget, 1, 3)
+
+        # ROW 3
+        submission_info_layout.addWidget(QLabel("Organization: ", self), 2, 0)
+        org_widget = QLineEdit()
+        org_widget.setReadOnly(True)
+        submission_info_layout.addWidget(org_widget, 2, 1)
+
+        submission_info_layout.addWidget(QLabel("Email: ", self), 2, 2)
+        email_widget = QLineEdit()
+        email_widget.setReadOnly(True)
+        submission_info_layout.addWidget(email_widget, 2, 3)
+
+        # ROW 4
+        submission_info_layout.addWidget(
+            QLabel("Permission for Org Name: "), 3, 0
+            )
+        permission_widget = QLineEdit()
+        permission_widget.setReadOnly(True)
+        submission_info_layout.addWidget(permission_widget, 3, 1)
+
+        submission_info_layout.addWidget(QLabel("Phone Number: ", self), 3, 2)
+        phone_widget = QLineEdit()
+        phone_widget.setReadOnly(True)
+        submission_info_layout.addWidget(phone_widget, 3, 3)
+
+        # CHECK BOXES
+        course_project_box = QCheckBox("Course Project")
+        course_project_box.setDisabled(True)
+        submission_info_layout.addWidget(course_project_box, 4, 0)
+
+        guest_speaker_box = QCheckBox("Guest Speaker")
+        guest_speaker_box.setDisabled(True)
+        submission_info_layout.addWidget(guest_speaker_box, 5, 0)
+
+        site_visit_box = QCheckBox("Site Visit")
+        site_visit_box.setDisabled(True)
+        submission_info_layout.addWidget(site_visit_box, 6, 0)
+
+        job_shadow_box = QCheckBox("Job Shadow")
+        job_shadow_box.setDisabled(True)
+        submission_info_layout.addWidget(job_shadow_box, 7, 0)
+
+        internship_box = QCheckBox("Internships")
+        internship_box.setDisabled(True)
+        submission_info_layout.addWidget(internship_box, 8, 0)
+
+        career_panel_box = QCheckBox("Career Panel")
+        career_panel_box.setDisabled(True)
+        submission_info_layout.addWidget(career_panel_box, 9, 0)
+
+        networking_event_box = QCheckBox("Networking Event")
+        networking_event_box.setDisabled(True)
+        submission_info_layout.addWidget(networking_event_box, 10, 0)  
+
         def show_entries_data(entry_passed):
             # name = entry_passed.split()
             # results = []
@@ -44,90 +119,31 @@ class MainWindow(QMainWindow):
             # query.exec(f"SELECT * FROM form_submissions WHERE first_name LIKE {name[0]}")
             # while query.next():
             #     results.append(f'{query.value(entry_id)}')
-            
-            # ROW 1
-            submission_info_layout.addWidget(QLabel("Position: ", self), 0, 0)
-            position_widget = QLineEdit()
-            position_widget.setPlaceholderText("Supreme Leader")
-            position_widget.setReadOnly(True)
-            submission_info_layout.addWidget(position_widget, 0, 1)
 
-            submission_info_layout.addWidget(QLabel("Prefix: ", self), 0, 2)
-            prefix_widget = QLineEdit()
+            # ROW 1
+            position_widget.setPlaceholderText("Supreme Leader")
             prefix_widget.setPlaceholderText("Mr.")
-            prefix_widget.setReadOnly(True)
-            submission_info_layout.addWidget(prefix_widget, 0, 3)
 
             # ROW 2
-            submission_info_layout.addWidget(QLabel("First Name: ", self), 1, 0)
-            first_name_widget = QLineEdit()
             first_name_widget.setPlaceholderText("John")
-            first_name_widget.setReadOnly(True)
-            submission_info_layout.addWidget(first_name_widget, 1, 1)
-
-            submission_info_layout.addWidget(QLabel("Last Name: ", self), 1, 2)
-            last_name_widget = QLineEdit()
             last_name_widget.setPlaceholderText("Doe")
-            last_name_widget.setReadOnly(True)
-            submission_info_layout.addWidget(last_name_widget, 1, 3)
 
             # ROW 3
-            submission_info_layout.addWidget(QLabel("Organization: ", self), 2, 0)
-            org_widget = QLineEdit()
             org_widget.setPlaceholderText("Generic Name Co.")
-            org_widget.setReadOnly(True)
-            submission_info_layout.addWidget(org_widget, 2, 1)
-
-            submission_info_layout.addWidget(QLabel("Email: ", self), 2, 2)
-            email_widget = QLineEdit()
             email_widget.setPlaceholderText("sample@vanilla.com")
-            email_widget.setReadOnly(True)
-            submission_info_layout.addWidget(email_widget, 2, 3)
 
             # ROW 4
-            submission_info_layout.addWidget(
-                QLabel("Permission for Org Name: "), 3, 0
-                )
-            permission_widget = QLineEdit()
             permission_widget.setPlaceholderText("Yes")
-            permission_widget.setReadOnly(True)
-            submission_info_layout.addWidget(permission_widget, 3, 1)
-
-            submission_info_layout.addWidget(QLabel("Phone Number: ", self), 3, 2)
-            phone_widget = QLineEdit()
             phone_widget.setPlaceholderText("555-555-5555")
-            phone_widget.setReadOnly(True)
-            submission_info_layout.addWidget(phone_widget, 3, 3)
 
             # CHECK BOXES
-            course_project_box = QCheckBox("Course Project")
-            course_project_box.setDisabled(True)
-            submission_info_layout.addWidget(course_project_box, 4, 0)
-
-            guest_speaker_box = QCheckBox("Guest Speaker")
+            course_project_box.setChecked(False)
             guest_speaker_box.setChecked(True)
-            guest_speaker_box.setDisabled(True)
-            submission_info_layout.addWidget(guest_speaker_box, 5, 0)
-
-            site_visit_box = QCheckBox("Site Visit")
-            site_visit_box.setDisabled(True)
-            submission_info_layout.addWidget(site_visit_box, 6, 0)
-
-            job_shadow_box = QCheckBox("Job Shadow")
-            job_shadow_box.setDisabled(True)
-            submission_info_layout.addWidget(job_shadow_box, 7, 0)
-
-            internship_box = QCheckBox("Internships")
-            internship_box.setDisabled(True)
-            submission_info_layout.addWidget(internship_box, 8, 0)
-
-            career_panel_box = QCheckBox("Career Panel")
-            career_panel_box.setDisabled(True)
-            submission_info_layout.addWidget(career_panel_box, 9, 0)
-
-            networking_event_box = QCheckBox("Networking Event")
-            networking_event_box.setDisabled(True)
-            submission_info_layout.addWidget(networking_event_box, 10, 0)
+            site_visit_box.setChecked(False)
+            job_shadow_box.setChecked(True)
+            internship_box.setChecked(False)
+            career_panel_box.setChecked(False)
+            networking_event_box.setChecked(False)
 
         for user in submissions:
             button = QPushButton(f'{user}', self)
