@@ -1,1 +1,0 @@
-    form_entries = get_wufoo_data(url)
