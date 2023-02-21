@@ -1,8 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout,\
     QVBoxLayout, QLabel, QPushButton, QWidget, QGridLayout, QLineEdit,\
     QCheckBox
-# from PyQt5.QtCore import *
-# from PyQt5.QtGui import *
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 import sys
 
@@ -25,12 +23,15 @@ class MainWindow(QMainWindow):
             submissions.append(f'{query.value("first_name")}'
                                f' {query.value("last_name")}')
 
+        # Setting overall layout of GUI
         self.page_layout = QHBoxLayout()
         self.button_layout = QVBoxLayout()
         self.submission_info_layout = QGridLayout()
 
         self.page_layout.addLayout(self.button_layout)
         self.page_layout.addLayout(self.submission_info_layout)
+
+        # -- Submission Fields --
 
         # ROW 1
         self.submission_info_layout.addWidget(QLabel("Position: ", self), 0, 0)
@@ -44,18 +45,21 @@ class MainWindow(QMainWindow):
         self.submission_info_layout.addWidget(self.prefix_widget, 0, 3)
 
         # ROW 2
-        self.submission_info_layout.addWidget(QLabel("First Name: ", self), 1, 0)
+        self.submission_info_layout.addWidget(
+            QLabel("First Name: ", self), 1, 0)
         self.first_name_widget = QLineEdit()
         self.first_name_widget.setReadOnly(True)
         self.submission_info_layout.addWidget(self.first_name_widget, 1, 1)
 
-        self.submission_info_layout.addWidget(QLabel("Last Name: ", self), 1, 2)
+        self.submission_info_layout.addWidget(
+            QLabel("Last Name: ", self), 1, 2)
         self.last_name_widget = QLineEdit()
         self.last_name_widget.setReadOnly(True)
         self.submission_info_layout.addWidget(self.last_name_widget, 1, 3)
 
         # ROW 3
-        self.submission_info_layout.addWidget(QLabel("Organization: ", self), 2, 0)
+        self.submission_info_layout.addWidget(
+            QLabel("Organization: ", self), 2, 0)
         self.org_widget = QLineEdit()
         self.org_widget.setReadOnly(True)
         self.submission_info_layout.addWidget(self.org_widget, 2, 1)
@@ -73,12 +77,14 @@ class MainWindow(QMainWindow):
         self.permission_widget.setReadOnly(True)
         self.submission_info_layout.addWidget(self.permission_widget, 3, 1)
 
-        self.submission_info_layout.addWidget(QLabel("Phone Number: ", self), 3, 2)
+        self.submission_info_layout.addWidget(
+            QLabel("Phone Number: ", self), 3, 2)
         self.phone_widget = QLineEdit()
         self.phone_widget.setReadOnly(True)
         self.submission_info_layout.addWidget(self.phone_widget, 3, 3)
 
-        # CHECK BOXES
+        # -- CHECK BOXES --
+
         self.course_project_box = QCheckBox("Course Project")
         self.course_project_box.setDisabled(True)
         self.submission_info_layout.addWidget(self.course_project_box, 4, 0)
@@ -107,13 +113,32 @@ class MainWindow(QMainWindow):
         self.networking_event_box.setDisabled(True)
         self.submission_info_layout.addWidget(self.networking_event_box, 10, 0)
 
+        # -- Buttons for each submitter --
+
+        for submitter in submissions:
+            self.button = QPushButton(f'{submitter}', self)
+            self.button.clicked.connect(lambda: show_entries_data())
+            self.button_layout.addWidget(self.button)
+
+        # Adding page layout to widget to be displayed
+        self.widget = QWidget()
+        self.widget.setLayout(self.page_layout)
+        self.setCentralWidget(self.widget)
+
         def show_entries_data():
+
+            # Getting name of button that was pressed
             name = self.sender().text()
+            # Splitting on first and last name to have easier access to both
             name = name.split()
 
             entry_data = query_entries_data(name)
 
-            title, prefix, first, last, org_name, email, permission, phone, course, guest, site, job_shadow, internship, career_panel, networking = range(15)
+            title, prefix, first, last, org_name, email, permission, phone,\
+                course, guest, site, job_shadow, internship,\
+                career_panel, networking = range(15)
+
+            # -- Filling info of submitter to GUI --
 
             # ROW 1
             self.position_widget.setPlaceholderText(entry_data[title])
@@ -167,27 +192,21 @@ class MainWindow(QMainWindow):
             else:
                 self.networking_event_box.setChecked(False)
 
-        for user in submissions:
-            self.button = QPushButton(f'{user}', self)
-            self.button.clicked.connect(lambda: show_entries_data())
-            self.button_layout.addWidget(self.button)
-
-        self.widget = QWidget()
-        self.widget.setLayout(self.page_layout)
-        self.setCentralWidget(self.widget)
-
 
 def query_entries_data(name_passed):
 
     entry_data = []
 
     query = QSqlQuery()
+
     if len(name_passed) == 2:
         query.exec(f"SELECT * FROM form_submissions WHERE first_name IN"
-                   f" (\"{name_passed[0]}\") AND last_name IN (\"{name_passed[1]}\")")
+                   f" (\"{name_passed[0]}\") AND last_name IN "
+                   f"(\"{name_passed[1]}\")")
     else:
         query.exec(f"SELECT * FROM form_submissions WHERE first_name IN"
-                   f" (\"{name_passed[0]}\") AND last_name IN (\"{name_passed[1]} {name_passed[2]}\")")
+                   f" (\"{name_passed[0]}\") AND last_name IN "
+                   f"(\"{name_passed[1]} {name_passed[2]}\")")
     while query.next():
         entry_data.append(query.value("title"))
         entry_data.append(query.value("prefix"))
