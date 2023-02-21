@@ -6,7 +6,7 @@ import sys
 
 
 class MainWindow(QMainWindow):
-
+    # flake8: noqa: C901
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
 

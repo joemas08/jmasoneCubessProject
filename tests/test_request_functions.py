@@ -71,7 +71,9 @@ def test_data_in_table():
     }]}
     insert_wufoo_data_to_table(db_connection, db_cursor,
                                fake_form, test_table_name)
-    query_test_table = db_cursor.execute(f'SELECT * FROM {test_table_name} WHERE first_name IN ("John") AND last_name IN ("Doe")')
+    query_test_table = db_cursor.execute(f'SELECT * FROM {test_table_name} '
+                                         f'WHERE first_name IN ("John") AND '
+                                         f'last_name IN ("Doe")')
 
     results = query_test_table.fetchall()
     assert results[0][0] == "1"
