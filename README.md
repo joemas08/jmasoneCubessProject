@@ -5,10 +5,13 @@
 <h4>Brief overview of the project</h4>
 <p>This project utilizes the API from <a href="https://www.wufoo.com">wufoo.com</a> that is used with their form 
 submissions. It pulls all the submissions to a specified form and currently sends this information to a designated database 
-in the project called form_submission.db. This database file will be created on the first run of the program.</p>
+in the project called form_submission.db. This database file will be created on the first run of the program. 
+After the database is created, a reactive <a href="https://pypi.org/project/PyQt5/">PyQt5</a> GUI will be displayed with 
+all of the submitters to <a href="https://j1masone.wufoo.com/forms/cubes-project-proposal-submission/">my wufoo form</a> 
+and their correlating information when they are clicked on.</p>
 <br>
 <h4>Database Used</h4>
-<p>I have used a SQLite database. It has the one table <i>form_submissions</i> that has all the correlating fields from <a href="https://j1masone.wufoo.com/forms/cubes-project-proposal-submission/">my wufoo form</a>.</p>
+<p>I have used a SQLite database. It has the one table <i>form_submissions</i> that has all the correlating fields from my wufoo form.</p>
 <br>
 <h4>How to install & run the project</h4>
 <ol>Clone the Repository</ol>

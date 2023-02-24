@@ -218,3 +218,69 @@ CreatedBy	public
 DateUpdated	No entry
 UpdatedBy	None
 --------------------------------------------------
+EntryId	11
+Field102	Mrs.
+Field104	Monette
+Field105	De Castro
+Field106	Grand Poobah
+Field107	De Castro Inc
+Field109	monette@decastro.com
+Field110	No entry
+Field111	1234567890
+Field112	Course Project
+Field113	No entry
+Field114	Site Visit
+Field115	No entry
+Field116	Internships
+Field117	No entry
+Field118	Networking Event
+Field213	No
+DateCreated	2023-02-07 01:10:49
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	12
+Field102	Mr.
+Field104	Marcus
+Field105	Fenix
+Field106	Sergeant
+Field107	Coalition of Ordered Governments
+Field109	locusthordekiller@COG.com
+Field110	COG.com
+Field111	7324539430
+Field112	No entry
+Field113	Guest Speaker
+Field114	No entry
+Field115	No entry
+Field116	No entry
+Field117	Career Panel
+Field118	No entry
+Field213	Yes
+DateCreated	2023-02-16 21:23:42
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
+EntryId	13
+Field102	Mr.
+Field104	Ronald
+Field105	McDonald
+Field106	Clown
+Field107	McDanks
+Field109	bringbckmcrib@dons.com
+Field110	McDonald’s.com
+Field111	4575886877
+Field112	No entry
+Field113	Guest Speaker
+Field114	No entry
+Field115	No entry
+Field116	No entry
+Field117	No entry
+Field118	No entry
+Field213	Yes
+DateCreated	2023-02-20 17:13:59
+CreatedBy	public
+DateUpdated	No entry
+UpdatedBy	None
+--------------------------------------------------
