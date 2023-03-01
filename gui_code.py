@@ -228,12 +228,8 @@ def query_entries_data(name_passed):
 
 
 def display_gui():
-    # Only need one Qapplication instance per application
-    app = QApplication(sys.argv)
-
     window = MainWindow()
 
     # Windows are hidden by default
     window.show()
 
-    app.exec_()
