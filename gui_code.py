@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout,\
     QVBoxLayout, QLabel, QPushButton, QWidget, QGridLayout, QLineEdit,\
     QCheckBox
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+from claim_project_gui import display_claiming_gui
 import sys
 
 
@@ -11,6 +12,7 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__(*args, **kwargs)
 
         self.setWindowTitle("Wufoo Forms")
+        self.setFixedSize(900, 450)
 
         db_connection = QSqlDatabase.addDatabase("QSQLITE")
         db_connection.setDatabaseName("form_submission.db")
@@ -112,6 +114,12 @@ class MainWindow(QMainWindow):
         self.networking_event_box = QCheckBox("Networking Event")
         self.networking_event_box.setDisabled(True)
         self.submission_info_layout.addWidget(self.networking_event_box, 10, 0)
+        
+        # -- Button to claim a project --
+        
+        self.claim_button = QPushButton("Claim Project", self)
+        self.claim_button.clicked.connect(display_claiming_gui)
+        self.submission_info_layout.addWidget(self.claim_button, 10, 3)
 
         # -- Buttons for each submitter --
 
@@ -228,8 +236,7 @@ def query_entries_data(name_passed):
 
 
 def display_gui():
+    
     window = MainWindow()
 
-    # Windows are hidden by default
     window.show()
-

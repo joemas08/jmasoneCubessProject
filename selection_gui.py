@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, \
+from PyQt5.QtWidgets import QApplication, \
     QHBoxLayout, QVBoxLayout, QPushButton, QWidget, QLabel
 from PyQt5.QtCore import Qt
 import sys
@@ -8,12 +8,13 @@ from database_functions import connect_to_database, create_entry_table, \
     insert_wufoo_data_to_table, close_db
 
 
-class SelectionWindow(QMainWindow):
+class SelectionWindow(QWidget):
 
-    def __init__(self, *args, **kwargs):
-        super(SelectionWindow, self).__init__(*args, **kwargs)
+    def __init__(self):
+        super().__init__()
 
         self.setWindowTitle("Selection Window")
+        self.setFixedSize(300, 70)
 
         self.button_layout = QHBoxLayout()
         self.page_layout = QVBoxLayout()
@@ -31,9 +32,7 @@ class SelectionWindow(QMainWindow):
         self.page_layout.addLayout(self.button_layout)
 
         # Adding page layout to widget to be displayed
-        self.widget = QWidget()
-        self.widget.setLayout(self.page_layout)
-        self.setCentralWidget(self.widget)
+        self.setLayout(self.page_layout)
 
 
 def update_data():
@@ -53,12 +52,9 @@ def update_data():
 
 
 def display_selection_gui():
-    # Only need one Qapplication instance per application
     app = QApplication(sys.argv)
 
     window = SelectionWindow()
-
-    # Windows are hidden by default
     window.show()
 
     app.exec_()
