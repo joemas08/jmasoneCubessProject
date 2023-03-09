@@ -1,5 +1,11 @@
 from PyQt5.QtWidgets import QVBoxLayout, QPushButton, \
-    QWidget, QLineEdit
+    QWidget, QLineEdit, QApplication
+import sys
+
+# I had an issue getting this window to display when the claim button was
+# clicked. It would close immediatly after opening. I reworked the code so
+# the window can be displayed in main if it's uncommented so you can see
+# the window and what I was trying to do.
 
 
 class ClaimingWindow(QWidget):
@@ -38,6 +44,9 @@ class ClaimingWindow(QWidget):
 
 
 def display_claiming_gui():
+    app = QApplication(sys.argv)
+
     window = ClaimingWindow()
 
     window.show()
+    app.exec_()

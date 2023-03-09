@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout,\
 from PyQt5.QtSql import QSqlDatabase, QSqlQuery
 from claim_project_gui import display_claiming_gui
 import sys
+from database_functions import mock_claim_project
 
 
 class MainWindow(QMainWindow):
@@ -85,6 +86,12 @@ class MainWindow(QMainWindow):
         self.phone_widget.setReadOnly(True)
         self.submission_info_layout.addWidget(self.phone_widget, 3, 3)
 
+        self.submission_info_layout.addWidget(
+            QLabel("Claimed By: ", self), 4, 2)
+        self.claimed_widget = QLineEdit()
+        self.claimed_widget.setReadOnly(True)
+        self.submission_info_layout.addWidget(self.claimed_widget, 4, 3)
+
         # -- CHECK BOXES --
 
         self.course_project_box = QCheckBox("Course Project")
@@ -118,7 +125,7 @@ class MainWindow(QMainWindow):
         # -- Button to claim a project --
         
         self.claim_button = QPushButton("Claim Project", self)
-        self.claim_button.clicked.connect(display_claiming_gui)
+        self.claim_button.clicked.connect(lambda: mock_claim_project())
         self.submission_info_layout.addWidget(self.claim_button, 10, 3)
 
         # -- Buttons for each submitter --
@@ -126,6 +133,10 @@ class MainWindow(QMainWindow):
         for submitter in submissions:
             self.button = QPushButton(f'{submitter}', self)
             self.button.clicked.connect(lambda: show_entries_data())
+            name = submitter.split()
+            submitter_info = query_entries_data(name)
+            if submitter_info[-1] != "None":
+                self.button.setStyleSheet("background-color: gray")
             self.button_layout.addWidget(self.button)
 
         # Adding page layout to widget to be displayed
@@ -144,7 +155,7 @@ class MainWindow(QMainWindow):
 
             title, prefix, first, last, org_name, email, permission, phone,\
                 course, guest, site, job_shadow, internship,\
-                career_panel, networking = range(15)
+                career_panel, networking, claimed_by = range(16)
 
             # -- Filling info of submitter to GUI --
 
@@ -163,6 +174,9 @@ class MainWindow(QMainWindow):
             # ROW 4
             self.permission_widget.setPlaceholderText(entry_data[permission])
             self.phone_widget.setPlaceholderText(entry_data[phone])
+
+            # ROW 5
+            self.claimed_widget.setPlaceholderText(entry_data[claimed_by])
 
             # CHECK BOXES
             if entry_data[course] != '':
@@ -231,6 +245,7 @@ def query_entries_data(name_passed):
         entry_data.append(query.value("internships"))
         entry_data.append(query.value("career_panel"))
         entry_data.append(query.value("networking_event"))
+        entry_data.append(query.value("project_claimer"))
 
     return entry_data
 

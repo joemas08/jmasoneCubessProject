@@ -22,6 +22,26 @@ def connect_to_database(db_name: str):
         return db_connection, db_cursor
 
 
+def create_user_table(db_connection: sqlite3.Connection,
+                      db_cursor: sqlite3.Cursor):
+    try:
+        db_cursor.execute('''CREATE TABLE IF NOT EXISTS users(
+                            first_name TEXT NOT NULL,
+                            last_name TEXT NOT NULL,
+                            title TEXT NOT NULL,
+                            bsu_email TEXT PRIMARY KEY,
+                            department TEXT NOT NULL);''')
+
+        # Clearing all data from table from previous runs of program
+        db_cursor.execute('''DELETE FROM users''')
+
+        print('~ users table has been created\n')
+    except sqlite3.Error as db_error:
+        print(f'A database error has occurred : {db_error}')
+        close_db(db_connection, db_cursor)
+        exit()
+
+
 def create_entry_table(db_connection: sqlite3.Connection,
                        db_cursor: sqlite3.Cursor, table_name: str):
     try:
@@ -46,7 +66,9 @@ def create_entry_table(db_connection: sqlite3.Connection,
                             date_created TEXT,
                             created_by TEXT,
                             date_updated TEXT,
-                            updated_by TEXT);''')
+                            updated_by TEXT,
+                            project_claimer TEXT
+                            REFERENCES users (bsu_email));''')
 
         # Clearing all data from table from previous runs of program
         db_cursor.execute(f'''DELETE FROM {table_name}''')
@@ -67,7 +89,7 @@ def insert_wufoo_data_to_table(db_connection: sqlite3.Connection,
         for lists, entries in form_entries.items():
             for entry in entries:
                 db_cursor.execute(f'''INSERT INTO {table_name} VALUES
-                                  (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                                  (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                                   ''',
                                   (entry.get('EntryId', 'No Entry'),
                                    entry.get('Field102', 'No Entry'),
@@ -89,10 +111,31 @@ def insert_wufoo_data_to_table(db_connection: sqlite3.Connection,
                                    entry.get('DateCreated', 'No Entry'),
                                    entry.get('CreatedBy', 'No Entry'),
                                    entry.get('DateUpdated', 'No Entry'),
-                                   entry.get('UpdatedBy', 'No Entry')))
+                                   entry.get('UpdatedBy', 'No Entry'),
+                                   "None"))
                 db_connection.commit()
         print('~ Database: Database has been'
               ' populated with submission data\n')
+    except sqlite3.Error as db_error:
+        print(f'A database error has occurred : {db_error}')
+        close_db(db_connection, db_cursor)
+        exit()
+
+
+def mock_claim_project():
+    try:
+        db_connection, db_cursor = connect_to_database("form_submission.db")
+        db_cursor.execute('''INSERT INTO users
+                             VALUES ('first',
+                                     'last',
+                                     'teacher',
+                                     'firstlast@bsu.com',
+                                     'comp sci');''')
+        db_cursor.execute('''UPDATE form_submissions
+                          SET project_claimer = 'firstlast@bsu.com'
+                          WHERE first_name IN ('John')
+                          AND last_name IN ('Doe');''')
+        db_connection.commit()
     except sqlite3.Error as db_error:
         print(f'A database error has occurred : {db_error}')
         close_db(db_connection, db_cursor)
