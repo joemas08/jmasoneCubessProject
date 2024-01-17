@@ -16,10 +16,6 @@ status as well as showing what email has claimed them once the GUI window has be
 <h4>Database Used</h4>
 <p>I have used a SQLite database. It has the one table <i>form_submissions</i> that has all the correlating fields from my wufoo form.</p>
 <br>
-<h4>Issues with my project</h4>
-<p>My project will only currently claim the first project with a hardcoded example user. I ran into an issue with 
-displaying the claiming GUI window after the claim button was clicked.</p>
-<br>
 <h4>How to install & run the project</h4>
 <ol>Clone the Repository</ol>
 <ol>Run main.py on your machine</ol>
